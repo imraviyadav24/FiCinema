@@ -3,6 +3,7 @@ import Header from './Header';
 import movie from '../apis/movie';
 import axios from 'axios';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 import {API_URL, API_KEY,IMAGE_BASE_URL, BACKDROP_SIZE,POSTER_SIZE} from '../config';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -43,7 +44,7 @@ class App extends React.Component {
     };
 
     onVideoSelect = video => {
-        console.log('From the App!', video);
+        this.setState({ selectedVideo: video });
     };
 
     render() {
@@ -51,6 +52,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header onFormSubmit={this.onTermSubmit} />
+                <VideoDetail video={this.state.selectedVideo} />
                  <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
             </div>
         );
